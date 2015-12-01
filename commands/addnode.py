@@ -128,4 +128,4 @@ class CmdAddNode(ClusterCompleter):
                           image_id=self.opts.image_id,
                           instance_type=self.opts.instance_type,
                           zone=self.opts.zone, spot_bid=self.opts.spot_bid,
-                          no_create=self.opts.no_create)
+                          no_create=self.opts.no_create, force_demand=self.opts.force_demand)
