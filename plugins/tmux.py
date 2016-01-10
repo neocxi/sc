@@ -81,10 +81,10 @@ class TmuxControlCenter(clustersetup.DefaultClusterSetup):
         node.ssh.execute('tmux new-session -d -s %s' % envname)
 
     def _kill_session(self, node, envname):
-        node.ssh.execute('tmux kill-session -t %s' % envname)
+        node.ssh.execute('tmux kill-session -t %s' % envname, ignore_exit_status=True)
 
     def _kill_window(self, node, envname, window):
-        node.ssh.execute('tmux kill-window -t %s:%s' % (envname, window))
+        node.ssh.execute('tmux kill-window -t %s:%s' % (envname, window), ignore_exit_status=True)
 
     def _new_window(self, node, envname, title):
         node.ssh.execute('tmux new-window -n %s -t %s:' % (title, envname))

@@ -20,6 +20,7 @@ StarCluster Command Line Interface:
 
 starcluster [global-opts] action [action-opts] [<action-args> ...]
 """
+import json
 import os
 import sys
 import shlex
@@ -76,6 +77,7 @@ class StarClusterCLI(object):
         """
         gparser = gparser or self.gparser
         # parse global options.
+        global gopts
         gopts, args = gparser.parse_args()
         if not args:
             gparser.print_help()
@@ -143,6 +145,8 @@ class StarClusterCLI(object):
                            static.STARCLUSTER_CFG_FILE)
         gparser.add_option("-r", "--region", dest="REGION", action="store",
                            help="specify a region to use (default: us-east-1)")
+        gparser.add_option("-e", "--extra", action="callback", callback=json.loads, default={},
+                           help="extra")
         gparser.disable_interspersed_args()
         return gparser
 

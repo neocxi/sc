@@ -32,6 +32,8 @@ class SGEPlugin(clustersetup.DefaultClusterSetup):
                  **kwargs):
         self.master_is_exec_host = str(master_is_exec_host).lower() == "true"
         self.slots_per_host = None
+        import os
+        slots_per_host = int(os.environ.get('slots_per_host', slots_per_host))
         if slots_per_host is not None:
             self.slots_per_host = int(slots_per_host)
         super(SGEPlugin, self).__init__(**kwargs)
